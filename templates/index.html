@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de productos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container header">
+        <h3>Examen Tecnologias Emergentes II</h3>
+        <p>
+            Nombre: Limbert Blanco Coasaca 
+        </p>
+        <P>
+            Carnet: 10092740
+        </P>
+        
+    </div>
+
+    <h1>GESTIÓN DE PRODUCTOS</h1>
+
+    <a href="{{ url_for('agregar_producto') }}" class="btn-agregar">Agregar nuevo producto</a>
+
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Categoría</th>
+            <th>Acciones</th>
+        </tr>
+        {% for producto in productos %}
+        <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.cantidad }}</td>
+            <td>{{ producto.precio }}</td>
+            <td>{{ producto.categoria }}</td>
+            <td class="actions">
+                <a href="{{ url_for('editar_producto', id=producto['id']) }}">Editar</a> |
+                <a href="{{ url_for('eliminar_producto', id=producto['id']) }}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
